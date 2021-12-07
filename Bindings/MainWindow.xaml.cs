@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Bindings
 {
@@ -34,7 +25,7 @@ namespace Bindings
             };
             var fontSize = new List<int>
             {
-                10,11,12,13,15,17,20,25,30,40,50
+                10,11,12,13,15,17,20,25,30,40,50,60,70,80,90,100
             };
 
             var fontStyle = new List<FontStyle>
@@ -54,6 +45,14 @@ namespace Bindings
             Font_Size.ItemsSource = fontSize;
             Font_Style.ItemsSource = fontStyle;
             Font_Weight.ItemsSource = fontWeight;
+
+            // Биндинги
+            Select_Color_Foreground_Binding.ItemsSource = colors;
+            Select_Color_Background_Binding.ItemsSource = colors;
+            Font_Style_Binding.ItemsSource = fontStyle;
+            Font_Size_Binding.ItemsSource = fontSize;
+            Font_Weight_Binding.ItemsSource = fontWeight;
+
         }
 
         private void Change_Color_Foreground(object sender, SelectionChangedEventArgs e)
@@ -87,6 +86,11 @@ namespace Bindings
         {
             object selectedItem = ((ComboBox)sender).SelectedItem;
             Test_Text.FontWeight = (FontWeight)selectedItem;
+        }
+
+        private void Text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Test_Text.Text = Text_Not_Binding.Text;
         }
     }
 }
